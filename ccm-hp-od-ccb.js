@@ -50,7 +50,57 @@ document.addEventListener("DOMContentLoaded", function () {
     // Sayfa ilk açıldığında Grain origin durumunu uygula.
     updateModelConstants();
 
+// ==================================================
+// RESET
+// ==================================================
 
+resetBtn.addEventListener("click", function () {
+
+    // Load protocol
+    nInput.value = 4;
+    deltaInput.value = 0.1;
+
+    for (const input of locInputs) {
+        input.value = "";
+        input.classList.remove("input-error");
+    }
+
+    for (const input of unInputs) {
+        input.value = "";
+        input.classList.remove("input-error");
+    }
+
+    updateActiveCycles();
+
+    // Soil initial properties
+    d10Input.value = "";
+    d50Input.value = "";
+    cuInput.value = "";
+    drInput.value = "";
+    vclInput.value = "";
+
+    d10Input.classList.remove("input-error");
+    d50Input.classList.remove("input-error");
+    cuInput.classList.remove("input-error");
+    drInput.classList.remove("input-error");
+    vclInput.classList.remove("input-error");
+
+    // Grain origin and model constants
+    originSelect.value = "basalt";
+    updateModelConstants();
+
+    for (const input of modelConstantInputs) {
+        input.classList.remove("input-error");
+    }
+
+    // Calculation
+    const calculationInputs =
+        document.querySelectorAll(".calculation-frame input");
+
+    for (const input of calculationInputs) {
+        input.value = "";
+    }
+});
 
     // ==================================================
     // N'YE GÖRE AKTİF / PASİF ÇEVRİMLER
